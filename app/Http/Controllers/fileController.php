@@ -8,16 +8,17 @@ class fileController extends Controller
 {
     //se van a subir las imagenes para las propiedades
     function upload(Request $req){
+        $files = $req->file('files');
         
-        // $result = $req->file('file')->store('Archivos');
-        $result = $req->file('file');
-        $filename = $result->getClientOriginalName();
-        $result->move(public_path('archivos'), $filename);
-
+        foreach($files as $file) {
+            $file->move(public_path('archivos'), $file->getClientOriginalName());
+        }
+        
         return response()->json([
-            'status'=>'ok'
+            "files" => $req->file('files')
         ]);
     }
+    
     function download(request $req){
         $path = storage_path('app\Archivos\ ');
         return response()->download($path);

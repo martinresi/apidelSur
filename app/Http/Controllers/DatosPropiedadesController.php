@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Validator;
 
 class DatosPropiedadesController extends Controller
 {
-    public function index(){
+    /*public function index(){
         $propiedades = DatosPropiedades::all();  //TRAER TODAS LAS CASAS
         return $propiedades;
     }
@@ -20,7 +20,7 @@ class DatosPropiedadesController extends Controller
         $propiedades->titulo = $request->titulo;
         $propiedades->direccion = $request->direccion;
         $propiedades->descripcion = $request->descripcion;
-        $propiedades->m2 = $request->m2;
+        $propiedades->m2 = $request->m2;                               //NO SE VA A USAR
         $propiedades->ambientes = $request->ambientes;
         $propiedades->dormitorios = $request->dormitorios;
         $propiedades->banios = $request->banios;
@@ -65,7 +65,7 @@ class DatosPropiedadesController extends Controller
     public function save(request $request){
 
         
-    }
+    }*/
 
 
 

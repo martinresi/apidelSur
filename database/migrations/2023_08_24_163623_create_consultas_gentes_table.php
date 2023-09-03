@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string("fullname");
             $table->text("number");
             $table->text("email");
+            $table->integer("idPropiedad")->nullable();
             $table->text('descripcion')->nullable();
             $table->timestamps();
         });
