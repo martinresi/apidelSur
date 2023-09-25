@@ -11,17 +11,27 @@ class DatosPropiedadController extends Controller
 {
     public function index(Request $request)
     {
-        /*
-        $propiedades = DatosPropiedad::paginate(100, ['*'], 'page', $request->page ?? 1);
-        return $propiedades;
-        */
+       
+        $propiedades = DatosPropiedad::when(isset($request->destacado), function($query) use ($request) {
+            $query->where('destacado', $request->destacado);
+        })
+        ->when(isset($request->operacion), function ($query) use ($request) {
+            $query->where('operacion', $request->operacion);
+        })
+        ->when(isset($request->categoria), function ($query) use ($request) {
+            $query->where('categoria', $request->categoria);
+        })
+        ->when(isset($request->precio), function ($query) use ($request) {
+            $query->orderBy('precio', $request->precio);
+        })
+        ->when(isset($request->busqueda), function ($query) use ($request) {
+            $query->where("direccion", "like", "%{$request->busqueda}%");
+        })
+        ->paginate(5, ['*'], 'page', $request->page ?? 1);
 
-        $query = DatosPropiedad::query();
-        if (isset($request->destacado)) {
-            $query = $query->where('destacado', $request->destacado);
-        }
-        $propiedades = $query->paginate(100, ['*'], 'page', $request->page ?? 1);
         return $propiedades;
+
+
     }
     public function mostrarTodo(Request $request)
     {

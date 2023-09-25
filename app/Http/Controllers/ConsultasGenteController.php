@@ -16,6 +16,7 @@ class ConsultasGenteController extends Controller
     public function generarConsulta(request $request){
         $consultas = new ConsultasGente();
         $consultas->fullname = $request->fullname;
+        //$consultas->IDProp = $request->IDProp;
         $consultas->number = $request->number;
         $consultas->email = $request->email;
         $consultas->descripcion = $request->descripcion;
@@ -31,6 +32,7 @@ class ConsultasGenteController extends Controller
     public function update (request $request, $id){
         $consultas = ConsultasGente::findOrFail($request->$id);
         $consultas->fullname = $request->fullname;
+        //$consultas->IDProp = $request->IDProp;
         $consultas->number = $request->number;
         $consultas->email = $request->email;
 
@@ -58,16 +60,6 @@ class ConsultasGenteController extends Controller
             return response()->json(['errors' => $validator->errors()], 200);
         }
     }
-
-
-
-
-
-
-
-
-
-
 
 
 

@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('consultas_gentes', function (Blueprint $table) {
             $table->id();
+            $table->string("ID-Prop")->nullable();
             $table->string("fullname");
             $table->text("number");
             $table->text("email");
-            $table->integer("idPropiedad")->nullable();
             $table->text('descripcion')->nullable();
             $table->timestamps();
         });

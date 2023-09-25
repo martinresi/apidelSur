@@ -28,23 +28,6 @@ use Illuminate\Support\Facades\Auth;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-// *************** LOGIN ***************
-/*
-Route::post('/login', function(Request $request) {
-    // || Obtencion de credenciales
-    $credentials = $request->only(['email', 'password']);
-
-    if(Auth::attempt($credentials)) {
-        return response()->json([
-            "status" => 'ok',
-            "user" => Auth::user()
-        ]);
-    }
-    return response()->json([
-        'error' => 'credenciales incorrectas',
-    ]);
-});
-*/
 
 Route::post('logout', function (Request $request) {
     $auth = new AuthController();
@@ -80,8 +63,6 @@ Route::controller(AuthController::class)->group(function () {
 
 });
 
-
-// CREO QUE ES ESTO NOMAS
 // *************** PROPIEDADES ***************
 Route::controller(DatosPropiedadController::class)->group(function(){
     Route::post('/addproperties','index'); //subir datos a la db
@@ -92,6 +73,8 @@ Route::controller(DatosPropiedadController::class)->group(function(){
     Route::get("properties/last", "last");
     Route::post("propertie/images", "images");
     Route::get("/addproperties", "mostrarTodo");
+
+    //Route::get('/addpropertiesdestacadas','destacadas');
 });
 
 
@@ -104,3 +87,6 @@ Route::controller(ConsultasTasacionesController::class)->group(function(){
     Route::put('/addtasacion/{id}', 'update'); // edita por id NOSE  SI SE VA A USAR
     Route::delete('addtasacion/{id}','destroy');
 });
+
+Route::post('/filtrar-elementos', 'FiltrarController@filtrar');
+
