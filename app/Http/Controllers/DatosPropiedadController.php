@@ -116,7 +116,9 @@ class DatosPropiedadController extends Controller
     {
         return response()->json([
             'id' => DB::table('datos_propiedads')->orderBy('id', 'desc')->first()->id ?? 0
+            
         ]);
+        
     }
 
     public function images(Request $request)
@@ -128,6 +130,7 @@ class DatosPropiedadController extends Controller
             $exploded = explode("/", $file);
             array_push($clean_files, $exploded[count($exploded) - 1]);
         }
+        
 
 
         return response()->json(['files' => $clean_files]);

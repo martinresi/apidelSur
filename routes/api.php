@@ -74,7 +74,6 @@ Route::controller(DatosPropiedadController::class)->group(function(){
     Route::post("propertie/images", "images");
     Route::get("/addproperties", "mostrarTodo");
 
-    //Route::get('/addpropertiesdestacadas','destacadas');
 });
 
 
