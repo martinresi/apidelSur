@@ -52,6 +52,7 @@ class DatosPropiedadController extends Controller
 
         $propiedades = new DatosPropiedad();
 
+        $propiedades->id = $request->id;
         $propiedades->titulo = $request->titulo;
         $propiedades->direccion = $request->direccion;
         $propiedades->descripcion = $request->descripcion;
@@ -114,8 +115,9 @@ class DatosPropiedadController extends Controller
 
     public function last()
     {
+        $ID = DB::table('datos_propiedads')->orderBy('id', 'desc')->first()->id ?? 0;
         return response()->json([
-            'id' => DB::table('datos_propiedads')->orderBy('id', 'desc')->first()->id ?? 0
+            'id' => $ID +1
             
         ]);
         
