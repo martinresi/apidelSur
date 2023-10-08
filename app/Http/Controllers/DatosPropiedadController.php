@@ -27,7 +27,7 @@ class DatosPropiedadController extends Controller
         ->when(isset($request->busqueda), function ($query) use ($request) {
             $query->where("direccion", "like", "%{$request->busqueda}%");
         })
-        ->paginate(5, ['*'], 'page', $request->page ?? 1);
+        ->paginate(10, ['*'], 'page', $request->page ?? 1);
 
         return $propiedades;
 
