@@ -115,8 +115,16 @@ class DatosPropiedadController extends Controller
 
     public function destroy($id)
     {
-        $propiedades = DatosPropiedad::destroy($id);
-        return $propiedades;
+        $propiedad = DatosPropiedad::where("id", $id)->first();
+        $files = glob(public_path('archivos') . '/' . $propiedad->id . '_*.jpg');
+        foreach($files as $file) {
+            unlink($file);
+        }
+        $propiedad->delete();
+
+        return response ()->json([
+            "status" => "ok"
+        ]);
     }
 
     public function save(request $request)
@@ -145,4 +153,5 @@ class DatosPropiedadController extends Controller
 
         return response()->json(['files' => $clean_files]);
     }
+
 }
