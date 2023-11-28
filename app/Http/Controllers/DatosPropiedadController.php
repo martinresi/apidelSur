@@ -29,6 +29,16 @@ class DatosPropiedadController extends Controller
         })
         ->paginate(10, ['*'], 'page', $request->page ?? 1);
 
+        foreach ($propiedades as $propiedad) {
+            $files = glob(public_path('archivos') . '/' . $propiedad->id . '_*.jpg');
+            $clean_files = [];
+            foreach ($files as $file) {
+                $exploded = explode("/", $file);
+                array_push($clean_files, $exploded[count($exploded) - 1]);
+            }
+
+            $propiedad->images = $clean_files;
+        }
         return $propiedades;
 
 
@@ -117,10 +127,8 @@ class DatosPropiedadController extends Controller
     {
         $ID = DB::table('datos_propiedads')->orderBy('id', 'desc')->first()->id ?? 0;
         return response()->json([
-            'id' => $ID +1
-            
+            'id' => $ID +1 
         ]);
-        
     }
 
     public function images(Request $request)
