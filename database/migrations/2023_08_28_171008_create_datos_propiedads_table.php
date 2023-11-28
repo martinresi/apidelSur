@@ -28,7 +28,7 @@ return new class extends Migration
             $table->integer('operacion'); // me falto destacado
             $table->double('precio');
             $table->integer('destacado')->nullable(); 
-            $table->text('map');
+            $table->text('map')->nullable();
             $table->timestamps();
 
             /**
